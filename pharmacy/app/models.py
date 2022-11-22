@@ -88,7 +88,7 @@ class Medicament(models.Model):
     dosage = models.CharField(verbose_name="Дозировка", max_length=30)
 
     def __str__(self):
-        return f"{self.name} {self.form_release} {self.disease} {self.price}"
+        return f"{self.name}, форма выпуска: {self.form_release}, цена: {self.price}"
 
     class Meta:
         verbose_name = "Лекарственное средство"
@@ -103,7 +103,7 @@ class MedicamentInPharmacy(models.Model):
     expiration_date = models.DateField(verbose_name="Срок годности",)
 
     def __str__(self):
-        return f"{self.pharmacy} {self.medicament} {self.price} {self.expiration_date}"
+        return f"{self.medicament}, цена в аптеке: {self.price}, срок годности: {self.expiration_date}"
 
     class Meta:
         verbose_name = "Лекарственные средства в аптеке"

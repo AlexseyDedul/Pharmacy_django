@@ -1,0 +1,20 @@
+{% extends 'pharmacy/base.html' %}
+
+{% block content %}
+
+<ul class="list-articles">
+    <p class="link-read-post"><a href="{% url 'add_application' %}">Создать заявку</a></p>
+	{% for p in application %}
+    <li>
+        <h2>{{p.name}}</h2>
+        <div class="clear"></div>
+        <p class="last">Дата: {{ p.date }}</p>
+        <p class="last">Основание: {{ p.reason }}</p>
+        <p class="last">Стоимость: {{ p.total_price }}</p>
+        {% for m in p.medicines.all %}
+        <p class="last">Медикамент в заявке: {{ m }}</p>
+        {% endfor %}
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

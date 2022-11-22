@@ -1,0 +1,42 @@
+{% extends 'pharmacy/base.html' %}
+
+{% block content %}
+
+<form class="form_search" method="get">
+    <input name="q" class="search" type="text" placeholder="Поиск лекарственного средства...">
+</form>
+
+<ul class="list-articles">
+	{% for p in medicines %}
+    <li>
+        <table class="table">
+            <tr>
+                <td style="width: 30%;">
+                    <h2>{{p.medicament.name}}</h2>
+                    <div class="clear"></div>
+                    <p class="last">Аптека: {{ p.pharmacy}}</p>
+                    <p class="last">Адрес: {{ p.pharmacy.address }}</p>
+                    <p class="last">Количество: {{ p.number }}</p>
+                    <p class="last">Цена: {{ p.price }}</p>
+
+                </td>
+                <td style="width: 30%;"></td>
+                <td>
+                    <div class="clear"></div>
+                    <p class="last">Описание: {{ p.medicament.description}}</p>
+                    <p class="last">Форма выпуска: {{ p.medicament.form_release }}</p>
+                    <p class="last">Дозировка: {{ p.medicament.dosage }}</p>
+                    <p class="link-read-post"><a href="{{ p.id }}">Подробнее</a></p>
+                </td>
+            </tr>
+        </table>
+
+    </li>
+{% endfor %}
+</ul>
+<style>
+    .table{
+        width: 100%;
+    }
+</style>
+{% endblock %}

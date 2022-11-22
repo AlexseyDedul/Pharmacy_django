@@ -1,6 +1,20 @@
 {% extends 'pharmacy/base.html' %}
 
 {% block content %}
-<h1>{{title}}</h1>
-<p>Main</p>
+
+<form class="form_search" method="get">
+    <input name="q" class="search" type="text" placeholder="Поиск аптеки...">
+</form>
+
+<ul class="list-articles">
+	{% for p in pharmacy %}
+    <li>
+        <h2>{{p.name}}</h2>
+        <div class="clear"></div>
+        <p class="last">Адрес: {{ p.address }}</p>
+        <p class="last">Номер: {{ p.state_number }}</p>
+        <p class="link-read-post"><a href="{{ p.id }}">Подробнее</a></p>
+    </li>
+{% endfor %}
+</ul>
 {% endblock %}
