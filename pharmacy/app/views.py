@@ -58,7 +58,7 @@ class ApplicationView(DataMixin, ListView):
 
     def get_queryset(self):
         user = self.request.user
-        return Application.objects.prefetch_related('medicines').filter(user=user)
+        return Application.objects.prefetch_related('medicines').filter(user=user).order_by("-id")
 
 
 class AddApplication(LoginRequiredMixin, DataMixin, CreateView):
@@ -81,12 +81,14 @@ class AddApplication(LoginRequiredMixin, DataMixin, CreateView):
 
         obj.total_price = 0.0
         obj.save()
+        total_price = 0
         for u in form.cleaned_data["medicines"]:
-            print(type(u.id))
+            total_price = total_price + u.price
+            print(u.price)
             obj.medicines.add(u.id)
-        # user = form.save()
-        # login(self.request, user)
-        return redirect('home')
+        obj.total_price = total_price
+        obj.save()
+        return redirect('application')
 
 
 def about(request):

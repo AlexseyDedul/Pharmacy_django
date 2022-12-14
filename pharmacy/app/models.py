@@ -127,7 +127,7 @@ class Order(models.Model):
 
 
 class Invoice(models.Model):
-    order = models.OneToOneField(Order, on_delete=models.CASCADE)
+    order = models.OneToOneField(Order, verbose_name="Заявка", on_delete=models.CASCADE)
     reason = models.CharField(verbose_name="Основние", max_length=100)
     medicines = models.ManyToManyField(Medicament)
     total_price = models.DecimalField(verbose_name="Общая цена", decimal_places=2, max_digits=12)
