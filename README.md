@@ -10,6 +10,8 @@ python3 -m venv venv
 
 . venv/bin/activate
 
+pip3 install -r req.txt
+
 #install postgres and create user with db
 sudo apt-get install postgresql
 sudo postgres psql
